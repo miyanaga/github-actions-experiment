@@ -1,0 +1,15 @@
+name: User Token Experiment
+
+on: [push]
+
+jobs:
+  user-info:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get user info
+        run: echo "Triggered by ${{ github.actor }}"
+      - name: Get user profile
+        run: |
+          curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              https://api.github.com/users/${{ github.actor }}
